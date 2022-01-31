@@ -15,9 +15,9 @@ const unleash = initialize({
 
 const getFeatureFlags = () =>{
     // Check a feature flag
-    feature_toggle.react_flag = unleash.isEnabled('react_flag');
-    feature_toggle.nodejs_flag = unleash.isEnabled('nodejs_flag');
-    feature_toggle.traffic_example = unleash.isEnabled('experiment_flag');
+    feature_toggle.react_flag = {'status':unleash.isEnabled('react_flag'),'variants':null};
+    feature_toggle.nodejs_flag = {'status':unleash.isEnabled('nodejs_flag'), 'variants': unleash.getVariant('nodejs_flag').payload.value};
+    feature_toggle.traffic_example = {'status':unleash.isEnabled('experiment_flag'), 'variants':null};
 }
 
 unleash.on('synchronized', () => {
